@@ -21,5 +21,6 @@ def generate_sensor_data():
 
 
 if __name__ == "__main__":
-    data = generate_sensor_data()
-    print(data)
+    for i in range(5):
+        data = generate_sensor_data()
+        print(data)
