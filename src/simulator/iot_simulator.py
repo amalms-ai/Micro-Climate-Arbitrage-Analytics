@@ -1,4 +1,6 @@
 import random
+import csv
+import os
 from datetime import datetime
 
 
@@ -38,7 +40,38 @@ def generate_sensor_data():
     return sensor_data
 
 
+def save_to_csv(sensor_data_list):
+    os.makedirs("data", exist_ok=True)
+
+    file_path = "data/sensor_data.csv"
+
+    fieldnames = [
+        "container_id",
+        "timestamp",
+        "temperature",
+        "humidity",
+        "vibration",
+        "status"
+    ]
+
+    with open(file_path, "w", newline="") as csv_file:
+        writer = csv.DictWriter(
+            csv_file,
+            fieldnames=fieldnames
+        )
+
+        writer.writeheader()
+        writer.writerows(sensor_data_list)
+
+    print(f"Sensor data saved to {file_path}")
+
+
 if __name__ == "__main__":
+    sensor_data_list = []
+
     for _ in range(5):
         data = generate_sensor_data()
+        sensor_data_list.append(data)
         print(data)
+
+    save_to_csv(sensor_data_list)
