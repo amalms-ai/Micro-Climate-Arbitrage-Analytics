@@ -1,6 +1,7 @@
 import random
 import csv
 import os
+import time
 from datetime import datetime
 
 
@@ -73,5 +74,7 @@ if __name__ == "__main__":
         data = generate_sensor_data()
         sensor_data_list.append(data)
         print(data)
+
+        time.sleep(2)
 
     save_to_csv(sensor_data_list)
