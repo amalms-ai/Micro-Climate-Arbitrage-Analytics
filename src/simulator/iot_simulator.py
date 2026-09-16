@@ -16,6 +16,16 @@ def check_container_status(temperature, humidity, vibration):
     else:
         return "Normal"
 
+def validate_sensor_data(temperature, humidity, vibration):
+    if (
+        2 <= temperature <= 10
+        and 60 <= humidity <= 90
+        and 0 <= vibration <= 1
+    ):
+        return True
+
+    return False
+
 
 def generate_sensor_data():
     container_id = f"CONT_{random.randint(1, 10):03d}"
@@ -30,13 +40,20 @@ def generate_sensor_data():
         vibration
     )
 
+    data_valid = validate_sensor_data(
+        temperature,
+        humidity,
+        vibration
+    )
+
     sensor_data = {
         "container_id": container_id,
         "timestamp": datetime.now().isoformat(),
         "temperature": temperature,
         "humidity": humidity,
         "vibration": vibration,
-        "status": status
+        "status": status,
+        "data_valid": data_valid
     }
 
     return sensor_data
@@ -48,13 +65,14 @@ def save_to_csv(sensor_data_list):
     file_path = "data/sensor_data.csv"
 
     fieldnames = [
-        "container_id",
-        "timestamp",
-        "temperature",
-        "humidity",
-        "vibration",
-        "status"
-    ]
+    "container_id",
+    "timestamp",
+    "temperature",
+    "humidity",
+    "vibration",
+    "status",
+    "data_valid"
+]
 
     with open(file_path, "w", newline="") as csv_file:
         writer = csv.DictWriter(
