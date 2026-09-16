@@ -2,6 +2,7 @@ import random
 import csv
 import os
 import time
+import json
 from datetime import datetime
 
 
@@ -66,6 +67,21 @@ def save_to_csv(sensor_data_list):
 
     print(f"Sensor data saved to {file_path}")
 
+def save_to_json(sensor_data_list):
+    os.makedirs("data", exist_ok=True)
+
+    file_path = "data/sensor_data.json"
+
+    with open(file_path, "w") as json_file:
+        json.dump(
+            sensor_data_list,
+            json_file,
+            indent=4
+        )
+
+    print(f"Sensor data saved to {file_path}")
+
+
 
 if __name__ == "__main__":
     sensor_data_list = []
@@ -78,3 +94,4 @@ if __name__ == "__main__":
         time.sleep(2)
 
     save_to_csv(sensor_data_list)
+    save_to_json(sensor_data_list)

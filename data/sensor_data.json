@@ -1,0 +1,42 @@
+[
+    {
+        "container_id": "CONT_002",
+        "timestamp": "2026-09-15T12:16:55.761603",
+        "temperature": 7.68,
+        "humidity": 80.75,
+        "vibration": 0.5,
+        "status": "Warning"
+    },
+    {
+        "container_id": "CONT_004",
+        "timestamp": "2026-09-15T12:16:57.766451",
+        "temperature": 3.21,
+        "humidity": 82.12,
+        "vibration": 0.34,
+        "status": "Warning"
+    },
+    {
+        "container_id": "CONT_004",
+        "timestamp": "2026-09-15T12:16:59.767108",
+        "temperature": 8.25,
+        "humidity": 63.08,
+        "vibration": 0.03,
+        "status": "Critical"
+    },
+    {
+        "container_id": "CONT_006",
+        "timestamp": "2026-09-15T12:17:01.768418",
+        "temperature": 5.92,
+        "humidity": 69.32,
+        "vibration": 0.85,
+        "status": "Critical"
+    },
+    {
+        "container_id": "CONT_006",
+        "timestamp": "2026-09-15T12:17:03.769756",
+        "temperature": 3.56,
+        "humidity": 67.73,
+        "vibration": 0.92,
+        "status": "Critical"
+    }
+]
