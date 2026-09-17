@@ -99,6 +99,8 @@ def save_to_json(sensor_data_list):
 
     print(f"Sensor data saved to {file_path}")
 
+def prepare_kafka_message(sensor_data):
+    return json.dumps(sensor_data)
 
 
 if __name__ == "__main__":
@@ -107,7 +109,16 @@ if __name__ == "__main__":
     for _ in range(5):
         data = generate_sensor_data()
         sensor_data_list.append(data)
+
+        kafka_message = prepare_kafka_message(data)
+
+        print("Sensor Data:")
         print(data)
+
+        print("Kafka Message:")
+        print(kafka_message)
+
+        print("-" * 50)
 
         time.sleep(2)
 
