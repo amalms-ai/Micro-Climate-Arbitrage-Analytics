@@ -4,6 +4,7 @@ import os
 import time
 import json
 from datetime import datetime
+from kafka import KafkaProducer
 
 
 def check_container_status(temperature, humidity, vibration):
@@ -102,8 +103,18 @@ def save_to_json(sensor_data_list):
 def prepare_kafka_message(sensor_data):
     return json.dumps(sensor_data)
 
+def create_kafka_producer():
+    producer = KafkaProducer(
+        bootstrap_servers="localhost:9092",
+        value_serializer=lambda v: json.dumps(v).encode("utf-8")
+    )
+
+    return producer
 
 if __name__ == "__main__":
+    producer = create_kafka_producer()
+    topic_name = "sensor-data"
+
     sensor_data_list = []
 
     for _ in range(5):
@@ -111,6 +122,9 @@ if __name__ == "__main__":
         sensor_data_list.append(data)
 
         kafka_message = prepare_kafka_message(data)
+
+        producer.send(topic_name, value=kafka_message)
+        producer.flush()
 
         print("Sensor Data:")
         print(data)
