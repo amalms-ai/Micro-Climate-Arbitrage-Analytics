@@ -1,46 +1,46 @@
 [
     {
-        "container_id": "CONT_002",
-        "timestamp": "2026-09-17T15:18:33.824977",
-        "temperature": 3.52,
-        "humidity": 87.69,
-        "vibration": 0.44,
-        "status": "Critical",
-        "data_valid": true
-    },
-    {
-        "container_id": "CONT_004",
-        "timestamp": "2026-09-17T15:18:35.826152",
-        "temperature": 7.35,
-        "humidity": 71.36,
-        "vibration": 0.6,
+        "container_id": "CONT_010",
+        "timestamp": "2026-09-19T12:25:59.667260",
+        "temperature": 4.14,
+        "humidity": 77.43,
+        "vibration": 0.68,
         "status": "Warning",
         "data_valid": true
     },
     {
-        "container_id": "CONT_007",
-        "timestamp": "2026-09-17T15:18:37.828492",
-        "temperature": 9.03,
-        "humidity": 86.79,
-        "vibration": 0.06,
+        "container_id": "CONT_003",
+        "timestamp": "2026-09-19T12:26:01.788820",
+        "temperature": 9.54,
+        "humidity": 80.71,
+        "vibration": 0.14,
         "status": "Critical",
         "data_valid": true
     },
     {
-        "container_id": "CONT_010",
-        "timestamp": "2026-09-17T15:18:39.830543",
-        "temperature": 8.56,
-        "humidity": 83.06,
-        "vibration": 0.16,
-        "status": "Critical",
+        "container_id": "CONT_008",
+        "timestamp": "2026-09-19T12:26:03.798568",
+        "temperature": 4.11,
+        "humidity": 66.68,
+        "vibration": 0.03,
+        "status": "Normal",
         "data_valid": true
     },
     {
-        "container_id": "CONT_004",
-        "timestamp": "2026-09-17T15:18:41.832811",
-        "temperature": 6.48,
-        "humidity": 83.88,
-        "vibration": 0.96,
+        "container_id": "CONT_005",
+        "timestamp": "2026-09-19T12:26:05.807066",
+        "temperature": 6.04,
+        "humidity": 63.58,
+        "vibration": 0.68,
+        "status": "Warning",
+        "data_valid": true
+    },
+    {
+        "container_id": "CONT_002",
+        "timestamp": "2026-09-19T12:26:07.819846",
+        "temperature": 9.17,
+        "humidity": 79.08,
+        "vibration": 0.1,
         "status": "Critical",
         "data_valid": true
     }

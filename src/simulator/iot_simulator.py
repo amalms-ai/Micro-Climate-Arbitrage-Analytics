@@ -57,7 +57,39 @@ def generate_sensor_data():
         "data_valid": data_valid
     }
 
+    sensor_data["data_valid"] = validate_sensor_record(sensor_data)
+
     return sensor_data
+def validate_sensor_record(sensor_data):
+    required_fields = [
+        "container_id",
+        "timestamp",
+        "temperature",
+        "humidity",
+        "vibration",
+        "status"
+    ]
+
+    for field in required_fields:
+        if field not in sensor_data:
+            return False
+
+    if not isinstance(sensor_data["temperature"], (int, float)):
+        return False
+
+    if not isinstance(sensor_data["humidity"], (int, float)):
+        return False
+
+    if not isinstance(sensor_data["vibration"], (int, float)):
+        return False
+
+    if not 0 <= sensor_data["humidity"] <= 100:
+        return False
+
+    if sensor_data["vibration"] < 0:
+        return False
+
+    return True
 
 
 def save_to_csv(sensor_data_list):
@@ -123,7 +155,7 @@ if __name__ == "__main__":
 
         kafka_message = prepare_kafka_message(data)
 
-        producer.send(topic_name, value=kafka_message)
+        producer.send(topic_name, value=data)
         producer.flush()
 
         print("Sensor Data:")
@@ -138,3 +170,4 @@ if __name__ == "__main__":
 
     save_to_csv(sensor_data_list)
     save_to_json(sensor_data_list)
+    producer.close()
