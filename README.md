@@ -8,17 +8,19 @@ The project simulates IoT sensor data such as temperature, humidity, and vibrati
 
 The project pipeline is:
 
-Python IoT Simulator → Apache Kafka → Snowflake → Apache Superset
+Python IoT Simulator → Apache Kafka → Snowflake → dbt → Apache Superset
 
 ## Technologies Used
 
 - Python
 - Apache Kafka
+- dbt
 - Docker
 - Snowflake
 - Apache Superset
 - SQL
 - Git & GitHub
+
 
 ## Sensor Data
 
@@ -64,3 +66,38 @@ Database structure:
 ATMOSYNC_DB
 └── RAW
     └── SENSOR_DATA
+
+
+## dbt Transformation
+
+dbt (data build tool) is used as the transformation layer between Snowflake and Apache Superset.
+
+The first dbt staging model is:
+
+`models/staging/stg_sensor_data.sql`
+
+The staging model reads sensor data from:
+
+`ATMOSYNC_DB.RAW.SENSOR_DATA`
+
+and creates the following Snowflake view:
+
+`ATMOSYNC_DB.RAW.STG_SENSOR_DATA`
+
+The staging model:
+- Selects the required sensor fields
+- Removes records without a container ID
+- Removes records without a timestamp
+- Provides a clean dataset for future analytics models
+
+The dbt model was successfully tested with:
+
+`dbt run`
+
+Result:
+
+`PASS=1 WARN=0 ERROR=0`
+
+The staged data was also verified using:
+
+`dbt show --select stg_sensor_data --limit 5`
