@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: stg_sensor_data
+    description: "Cleaned and validated sensor data for AtmoSync analytics."
+
+    columns:
+      - name: CONTAINER_ID
+        description: "Unique identifier of the shipping container."
+        tests:
+          - not_null
+
+      - name: TIMESTAMP
+        description: "Timestamp when the sensor reading was recorded."
+        tests:
+          - not_null
+
+      - name: TEMPERATURE
+        description: "Container temperature in Celsius."
+
+      - name: HUMIDITY
+        description: "Container humidity percentage."
+
+      - name: VIBRATION
+        description: "Container vibration measurement."
+
+      - name: STATUS
+        description: "Container condition status."
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['NORMAL', 'WARNING', 'CRITICAL']
+
+      - name: DATA_VALID
+        description: "Indicates whether the sensor record passed validation."
+        tests:
+          - not_null
