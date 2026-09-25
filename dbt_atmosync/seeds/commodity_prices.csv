@@ -1,0 +1,6 @@
+commodity,origin_market,secondary_market,origin_price_per_kg,secondary_market_price_per_kg
+Mango,Kochi,Calicut,120,145
+Banana,Kochi,Bangalore,55,70
+Tomato,Kochi,Calicut,40,52
+Apple,Bangalore,Kochi,180,210
+Grapes,Bangalore,Calicut,110,135
