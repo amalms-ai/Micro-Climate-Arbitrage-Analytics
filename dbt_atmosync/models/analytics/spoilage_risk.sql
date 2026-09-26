@@ -1,0 +1,35 @@
+{{ config(materialized='view') }}
+
+SELECT
+    CONTAINER_ID,
+    TIMESTAMP,
+    TEMPERATURE,
+    HUMIDITY,
+    VIBRATION,
+    STATUS,
+    DATA_VALID,
+
+    COMMODITY,
+    ORIGIN_MARKET,
+    SECONDARY_MARKET,
+    ORIGIN_PRICE_PER_KG,
+    SECONDARY_MARKET_PRICE_PER_KG,
+
+    CASE
+        WHEN STATUS = 'CRITICAL' THEN 'High'
+        WHEN STATUS = 'WARNING' THEN 'Medium'
+        ELSE 'Low'
+    END AS SPOILAGE_RISK_LEVEL,
+
+    CASE
+        WHEN STATUS = 'CRITICAL' THEN 90
+        WHEN STATUS = 'WARNING' THEN 60
+        ELSE 20
+    END AS SPOILAGE_RISK_SCORE,
+
+    ROUND(
+        SECONDARY_MARKET_PRICE_PER_KG - ORIGIN_PRICE_PER_KG,
+        2
+    ) AS SPOILAGE_ARBITRAGE_PER_KG
+
+FROM {{ ref('stg_sensor_commodity') }}

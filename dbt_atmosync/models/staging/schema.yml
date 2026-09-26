@@ -36,3 +36,82 @@ models:
         description: "Indicates whether the sensor record passed validation."
         tests:
           - not_null
+
+
+  - name: stg_commodity_prices
+    description: "Cleaned commodity pricing data used for AtmoSync market analysis."
+
+    columns:
+      - name: COMMODITY
+        description: "Name of the commodity."
+        tests:
+          - not_null
+
+      - name: ORIGIN_MARKET
+        description: "Market where the commodity originates."
+        tests:
+          - not_null
+
+      - name: SECONDARY_MARKET
+        description: "Secondary market where the commodity may be rerouted."
+        tests:
+          - not_null
+
+      - name: ORIGIN_PRICE_PER_KG
+        description: "Commodity price per kilogram at the origin market."
+
+      - name: SECONDARY_MARKET_PRICE_PER_KG
+        description: "Commodity price per kilogram at the secondary market."
+
+
+  - name: stg_sensor_commodity
+    description: "Combined sensor and commodity market data for AtmoSync analysis."
+
+    columns:
+      - name: CONTAINER_ID
+        description: "Unique identifier of the shipping container."
+        tests:
+          - not_null
+
+      - name: COMMODITY
+        description: "Commodity associated with the market scenario."
+        tests:
+          - not_null
+
+      - name: ORIGIN_MARKET
+        description: "Origin market for the commodity."
+        tests:
+          - not_null
+
+      - name: SECONDARY_MARKET
+        description: "Secondary market for the commodity."
+        tests:
+          - not_null
+
+
+  - name: spoilage_risk
+    description: "Calculates spoilage risk and potential price arbitrage for each container and commodity."
+
+    columns:
+      - name: CONTAINER_ID
+        description: "Shipping container identifier."
+        tests:
+          - not_null
+
+      - name: COMMODITY
+        description: "Commodity associated with the container."
+        tests:
+          - not_null
+
+      - name: SPOILAGE_RISK_LEVEL
+        description: "Risk category based on the sensor status."
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['High', 'Medium', 'Low']
+
+      - name: SPOILAGE_RISK_SCORE
+        description: "Numeric spoilage risk score."
+
+      - name: SPOILAGE_ARBITRAGE_PER_KG
+        description: "Difference between the secondary-market price and origin-market price per kilogram."
