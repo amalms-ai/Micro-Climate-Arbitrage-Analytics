@@ -101,3 +101,20 @@ Result:
 The staged data was also verified using:
 
 `dbt show --select stg_sensor_data --limit 5`
+
+## Superset Analytics Dashboard
+
+The AtmoSync Superset dashboard provides interactive analytics for sensor conditions, spoilage risk, and market arbitrage.
+
+### Spoilage Risk Analytics
+
+The dashboard includes:
+- Spoilage Risk Distribution
+- Average Spoilage Risk Score
+- Arbitrage by Commodity
+- Origin vs Secondary Market Price
+- Average Spoilage Arbitrage per KG
+- Risk Score by Container
+- Risk and Arbitrage Details
+
+The dashboard is connected to the Snowflake `RAW.SPOILAGE_RISK` dataset created through the dbt analytics layer.
