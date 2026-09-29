@@ -115,3 +115,39 @@ models:
 
       - name: SPOILAGE_ARBITRAGE_PER_KG
         description: "Difference between the secondary-market price and origin-market price per kilogram."
+
+
+  - name: spoilage_arbitrage
+    description: "Advanced analytics model that evaluates commodity price arbitrage and provides potential rerouting recommendations based on spoilage risk."
+
+    columns:
+      - name: CONTAINER_ID
+        description: "Shipping container identifier."
+        tests:
+          - not_null
+
+      - name: COMMODITY
+        description: "Commodity associated with the market scenario."
+        tests:
+          - not_null
+
+      - name: SPOILAGE_RISK_LEVEL
+        description: "Spoilage risk category for the container."
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['High', 'Medium', 'Low']
+
+      - name: SPOILAGE_ARBITRAGE_PER_KG
+        description: "Difference between secondary-market price and origin-market price per kilogram."
+
+      - name: REROUTING_RECOMMENDATION
+        description: "Business recommendation based on spoilage risk and positive price arbitrage."
+        tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - 'Consider Rerouting'
+                  - 'Monitor and Consider Rerouting'
+                  - 'Arbitrage Opportunity'
+                  - 'No Rerouting Opportunity'

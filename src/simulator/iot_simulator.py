@@ -4,7 +4,7 @@ import os
 import time
 import json
 from datetime import datetime
-from kafka import KafkaProducer
+from kafka import KafkaProducer, JsonSerializer
 
 
 def check_container_status(temperature, humidity, vibration):
@@ -138,9 +138,8 @@ def prepare_kafka_message(sensor_data):
 def create_kafka_producer():
     producer = KafkaProducer(
         bootstrap_servers="localhost:9092",
-        value_serializer=lambda v: json.dumps(v).encode("utf-8")
+        value_serializer=JsonSerializer()
     )
-
     return producer
 
 if __name__ == "__main__":
