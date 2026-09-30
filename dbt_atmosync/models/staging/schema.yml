@@ -140,7 +140,8 @@ models:
 
       - name: SPOILAGE_ARBITRAGE_PER_KG
         description: "Difference between secondary-market price and origin-market price per kilogram."
-
+      - name: POTENTIAL_ARBITRAGE_VALUE
+        description: "Potential arbitrage value based on 100 kg of assumed commodity quantity."
       - name: REROUTING_RECOMMENDATION
         description: "Business recommendation based on spoilage risk and positive price arbitrage."
         tests:

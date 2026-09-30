@@ -21,6 +21,10 @@ SELECT
     SECONDARY_MARKET_PRICE_PER_KG,
 
     SPOILAGE_ARBITRAGE_PER_KG,
+    ROUND(
+    SPOILAGE_ARBITRAGE_PER_KG * 100,
+    2
+    ) AS POTENTIAL_ARBITRAGE_VALUE,  
 
     CASE
         WHEN SPOILAGE_RISK_LEVEL = 'High'
@@ -36,6 +40,22 @@ SELECT
             THEN 'Arbitrage Opportunity'
 
         ELSE 'No Rerouting Opportunity'
-    END AS REROUTING_RECOMMENDATION
+        END AS REROUTING_RECOMMENDATION,
+
+    CASE
+        WHEN SPOILAGE_RISK_LEVEL = 'High'
+             AND SPOILAGE_ARBITRAGE_PER_KG > 0
+            THEN 'High Priority'
+
+        WHEN SPOILAGE_RISK_LEVEL = 'Medium'
+             AND SPOILAGE_ARBITRAGE_PER_KG > 0
+            THEN 'Medium Priority'
+
+        WHEN SPOILAGE_RISK_LEVEL = 'Low'
+             AND SPOILAGE_ARBITRAGE_PER_KG > 0
+            THEN 'Opportunity'
+
+        ELSE 'Low Priority'
+    END AS BUSINESS_PRIORITY
 
 FROM {{ ref('spoilage_risk') }}
