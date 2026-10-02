@@ -9,3 +9,6 @@ venv/
 .env
 # dbt logs
 logs/
+
+data/sensor_data.csv
+data/sensor_data.json

@@ -1,6 +1,0 @@
-container_id,timestamp,temperature,humidity,vibration,status,data_valid
-CONT_010,2026-09-19T12:25:59.667260,4.14,77.43,0.68,Warning,True
-CONT_003,2026-09-19T12:26:01.788820,9.54,80.71,0.14,Critical,True
-CONT_008,2026-09-19T12:26:03.798568,4.11,66.68,0.03,Normal,True
-CONT_005,2026-09-19T12:26:05.807066,6.04,63.58,0.68,Warning,True
-CONT_002,2026-09-19T12:26:07.819846,9.17,79.08,0.1,Critical,True
