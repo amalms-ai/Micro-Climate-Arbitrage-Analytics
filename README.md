@@ -262,3 +262,15 @@ Test
    ↓
 Visualize
 ```
+## 🎥 Project Demonstration
+
+Watch the complete AtmoSync project demonstration video on YouTube.
+
+▶️ [Watch Project Video](https://youtu.be/ey4SJxk8Ay4)
+
+### Technologies Demonstrated
+- Python
+- Apache Kafka
+- Snowflake
+- dbt
+- Apache Superset
